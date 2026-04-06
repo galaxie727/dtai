@@ -25,6 +25,8 @@ body{
   --btn:#fff;
   --btnText:#000;
   --panelGlow:0 8px 24px rgba(0,0,0,.35);
+  --good:#78e1a0;
+  --danger:#ff8f8f;
 }
 
 .app{
@@ -117,6 +119,7 @@ body{
   font-size:14px;
   border-radius:12px;
 }
+
 .row{
   display:flex;
   gap:10px;
@@ -132,6 +135,7 @@ body{
   padding:12px;
   box-shadow:var(--panelGlow);
 }
+
 .sectionTitle{
   font-size:18px;
   font-weight:900;
@@ -329,7 +333,129 @@ body{
   margin-top:5px;
   line-height:1.3;
 }
-  /* battle */
+  /* 戦況表 */
+.battleMeta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.metaPill{
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#171717;
+  font-size:11px;
+  color:#ddd;
+}
+.alivePill{font-weight:900}
+.aliveGood{color:#b8ffd1}
+.aliveBad{color:#ffc1c1}
+
+.statusBoard{
+  background:linear-gradient(180deg,#141414,#101010);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px;
+  margin-bottom:12px;
+  box-shadow:var(--panelGlow);
+}
+.statusHead{
+  display:grid;
+  grid-template-columns:1fr 44px 1fr;
+  gap:8px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.statusHead .label{
+  font-size:13px;
+  font-weight:900;
+  color:#ddd;
+}
+.statusHead .label.right{
+  text-align:right;
+}
+.statusRows{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.statusRow{
+  display:grid;
+  grid-template-columns:1fr 44px 1fr;
+  gap:8px;
+  align-items:center;
+}
+.miniSideCard{
+  background:#1a1a1a;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:8px;
+  min-height:58px;
+  display:grid;
+  grid-template-columns:40px 1fr auto;
+  gap:8px;
+  align-items:center;
+  position:relative;
+}
+.miniSideCard.right{
+  grid-template-columns:auto 1fr 40px;
+}
+.miniSideCard.dead{
+  opacity:.35;
+  filter:grayscale(1);
+}
+.miniSideCard.active{
+  outline:2px solid rgba(255,255,255,.5);
+}
+.miniSideCard img{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  object-fit:cover;
+  background:#0d0d0d;
+  border:1px solid var(--line);
+}
+.miniSideMain{
+  min-width:0;
+}
+.miniSideName{
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.miniSideMeta{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:2px;
+}
+.miniSideBadge{
+  font-size:11px;
+  font-weight:900;
+  color:#fff;
+}
+.boardVs{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:900;
+  color:#aaa;
+}
+.boardLink{
+  width:100%;
+  height:2px;
+  background:rgba(255,255,255,.18);
+  position:relative;
+}
+.boardLink.active{
+  background:rgba(255,255,255,.7);
+  box-shadow:0 0 10px rgba(255,255,255,.25);
+}
+
+/* 対戦カード */
 .battleTop{
   display:grid;
   grid-template-columns:1fr 64px 1fr;
@@ -350,12 +476,11 @@ body{
   font-weight:900;
   opacity:.95;
 }
-
 .fighterCard{
   border:1px solid var(--line);
   border-radius:18px;
   padding:14px;
-  min-height:270px;
+  min-height:246px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -381,16 +506,17 @@ body{
 .fighterCard.none{
   background:linear-gradient(180deg,#171717,#101010);
 }
-
-.fighterTop{
+.fighterHeader{
   display:flex;
   justify-content:space-between;
   align-items:flex-start;
-  gap:10px;
+  gap:8px;
+}
+.fighterTitleBlock{
+  min-width:0;
 }
 .fighterOrder{
   display:inline-block;
-  margin-bottom:8px;
   padding:4px 10px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.16);
@@ -398,51 +524,18 @@ body{
   font-size:11px;
   font-weight:900;
 }
-.fighterMiddle{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  min-height:110px;
-}
-.fighterMiddle.player{flex-direction:row}
-.fighterMiddle.enemy{flex-direction:row-reverse}
-.fighterText{
-  flex:1;
-  min-width:0;
-}
-.fighterVisual{
-  width:120px;
-  min-width:120px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-.fighterImg{
-  width:100%;
-  max-width:110px;
-  max-height:118px;
-  object-fit:contain;
-  filter:drop-shadow(0 8px 18px rgba(0,0,0,.45));
-}
-.fighterVisual.enemy .fighterImg{
-  transform:scaleX(-1);
-}
 .fighterName{
-  font-size:20px;
+  font-size:18px;
   font-weight:900;
-  line-height:1.2;
-  margin-top:2px;
+  line-height:1.15;
+  margin-top:8px;
 }
 .fighterRole{
   font-size:12px;
   color:var(--muted);
-  margin-top:4px;
+  margin-top:6px;
 }
 .matchupBadge{
-  margin-top:10px;
   display:inline-block;
   padding:4px 10px;
   border-radius:999px;
@@ -462,8 +555,32 @@ body{
   background:rgba(255,255,255,.08);
   color:#eee;
 }
-
-.hpWrap{margin-top:10px}
+.fighterBody{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  min-height:92px;
+}
+.fighterVisual{
+  width:118px;
+  height:92px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.fighterImg{
+  max-width:100%;
+  max-height:92px;
+  object-fit:contain;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.45));
+}
+.fighterVisual.enemy .fighterImg{
+  transform:scaleX(-1);
+}
+.hpWrap{margin-top:8px}
 .hpRow{
   display:flex;
   justify-content:space-between;
@@ -488,6 +605,7 @@ body{
 .hpFill.mid{background:#ffd24d}
 .hpFill.high{background:#77e0a0}
 
+/* 実況とログ */
 .liveTicker{
   margin:4px 0 10px;
   padding:14px 14px;
@@ -502,88 +620,6 @@ body{
   align-items:center;
   box-shadow:0 8px 24px rgba(0,0,0,.28);
 }
-
-/* 吹き出し */
-.battleBubble{
-  position:absolute;
-  top:-6px;
-  max-width:120px;
-  padding:8px 10px;
-  border-radius:12px;
-  background:rgba(255,255,255,.96);
-  color:#111;
-  font-size:12px;
-  font-weight:900;
-  line-height:1.35;
-  box-shadow:0 6px 18px rgba(0,0,0,.28);
-  z-index:3;
-  animation:bubblePop .45s ease;
-}
-.battleBubble.left{left:-6px}
-.battleBubble.right{right:-6px}
-.battleBubble.left::after{
-  content:"";
-  position:absolute;
-  left:18px;
-  bottom:-8px;
-  border-width:8px 7px 0 7px;
-  border-style:solid;
-  border-color:rgba(255,255,255,.96) transparent transparent transparent;
-}
-.battleBubble.right::after{
-  content:"";
-  position:absolute;
-  right:18px;
-  bottom:-8px;
-  border-width:8px 7px 0 7px;
-  border-style:solid;
-  border-color:rgba(255,255,255,.96) transparent transparent transparent;
-}
-@keyframes bubblePop{
-  0%{opacity:0;transform:translateY(6px) scale(.92)}
-  100%{opacity:1;transform:translateY(0) scale(1)}
-}
-
-/* 被弾演出 */
-.fighterCard.hit{
-  animation:cardHitShake .22s ease;
-}
-.fighterCard.hit-enemy{
-  animation:cardHitShakeEnemy .22s ease;
-}
-.fighterCard.flash::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(255,255,255,.28);
-  pointer-events:none;
-  animation:cardHitFlash .22s ease;
-}
-@keyframes cardHitShake{
-  0%{transform:translateX(0)}
-  20%{transform:translateX(-8px)}
-  40%{transform:translateX(7px)}
-  60%{transform:translateX(-5px)}
-  80%{transform:translateX(3px)}
-  100%{transform:translateX(0)}
-}
-@keyframes cardHitShakeEnemy{
-  0%{transform:translateX(0)}
-  20%{transform:translateX(8px)}
-  40%{transform:translateX(-7px)}
-  60%{transform:translateX(5px)}
-  80%{transform:translateX(-3px)}
-  100%{transform:translateX(0)}
-}
-@keyframes cardHitFlash{
-  0%{opacity:0}
-  25%{opacity:1}
-  100%{opacity:0}
-}
-.hpBar.hitbar{
-  box-shadow:0 0 0 2px rgba(255,255,255,.12), 0 0 16px rgba(255,255,255,.22);
-}
-
 .teamMiniWrap{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -640,7 +676,7 @@ body{
   padding:12px;
   overflow:auto;
   min-height:210px;
-  max-height:34svh;
+  max-height:30svh;
 }
 .logLine{
   font-size:13px;
@@ -726,38 +762,144 @@ body{
   line-height:1.7;
   white-space:pre-line;
 }
-.battleMeta{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:10px;
+
+/* 吹き出し */
+.battleBubble{
+  position:absolute;
+  top:-4px;
+  max-width:120px;
+  padding:8px 10px;
+  border-radius:12px;
+  background:rgba(255,255,255,.96);
+  color:#111;
+  font-size:12px;
+  font-weight:900;
+  line-height:1.35;
+  box-shadow:0 6px 18px rgba(0,0,0,.28);
+  z-index:3;
+  animation:bubblePop .45s ease;
 }
-.metaPill{
-  padding:7px 10px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:#171717;
-  font-size:11px;
-  color:#ddd;
+.battleBubble.left{left:-2px}
+.battleBubble.right{right:-2px}
+.battleBubble.left::after{
+  content:"";
+  position:absolute;
+  left:18px;
+  bottom:-8px;
+  border-width:8px 7px 0 7px;
+  border-style:solid;
+  border-color:rgba(255,255,255,.96) transparent transparent transparent;
 }
-.alivePill{font-weight:900}
-.aliveGood{color:#b8ffd1}
-.aliveBad{color:#ffc1c1}
+.battleBubble.right::after{
+  content:"";
+  position:absolute;
+  right:18px;
+  bottom:-8px;
+  border-width:8px 7px 0 7px;
+  border-style:solid;
+  border-color:rgba(255,255,255,.96) transparent transparent transparent;
+}
+@keyframes bubblePop{
+  0%{opacity:0;transform:translateY(6px) scale(.92)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* 被弾演出 */
+.fighterCard.hit{
+  animation:cardHitShake .22s ease;
+}
+.fighterCard.hit-enemy{
+  animation:cardHitShakeEnemy .22s ease;
+}
+.fighterCard.flash::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.28);
+  pointer-events:none;
+  animation:cardHitFlash .22s ease;
+}
+@keyframes cardHitShake{
+  0%{transform:translateX(0)}
+  20%{transform:translateX(-8px)}
+  40%{transform:translateX(7px)}
+  60%{transform:translateX(-5px)}
+  80%{transform:translateX(3px)}
+  100%{transform:translateX(0)}
+}
+@keyframes cardHitShakeEnemy{
+  0%{transform:translateX(0)}
+  20%{transform:translateX(8px)}
+  40%{transform:translateX(-7px)}
+  60%{transform:translateX(5px)}
+  80%{transform:translateX(-3px)}
+  100%{transform:translateX(0)}
+}
+@keyframes cardHitFlash{
+  0%{opacity:0}
+  25%{opacity:1}
+  100%{opacity:0}
+}
+.hpBar.hitbar{
+  box-shadow:0 0 0 2px rgba(255,255,255,.12), 0 0 16px rgba(255,255,255,.22);
+}
+
+/* ダメージ数字 */
+.damageText{
+  position:absolute;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:24px;
+  font-weight:900;
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.6);
+  pointer-events:none;
+  z-index:4;
+  animation:damagePop .7s ease forwards;
+}
+.damageText.crit{
+  color:#ffd95e;
+}
+@keyframes damagePop{
+  0%{opacity:0;transform:translateX(-50%) translateY(10px) scale(.7)}
+  25%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+  100%{opacity:0;transform:translateX(-50%) translateY(-24px) scale(1.05)}
+}
 
 @media (max-width:520px){
   .title{font-size:31px}
   .row{flex-direction:column}
   .pickGrid{grid-template-columns:1fr}
+  .statusRow{grid-template-columns:1fr 34px 1fr;gap:6px}
+  .statusHead{grid-template-columns:1fr 34px 1fr;gap:6px}
+  .miniSideCard{
+    min-height:54px;
+    grid-template-columns:36px 1fr auto;
+    padding:7px;
+  }
+  .miniSideCard.right{
+    grid-template-columns:auto 1fr 36px;
+  }
+  .miniSideCard img{
+    width:36px;
+    height:36px;
+  }
   .battleTop{grid-template-columns:1fr 48px 1fr;gap:8px}
   .vs{font-size:22px}
   .teamMiniWrap{grid-template-columns:1fr}
   .enemyPreview{grid-template-columns:repeat(3,1fr)}
   .liveTicker{font-size:16px}
-  .fighterCard{min-height:250px;padding:12px}
-  .fighterMiddle{min-height:96px}
-  .fighterVisual{width:88px;min-width:88px}
-  .fighterImg{max-width:82px;max-height:92px}
+  .fighterCard{min-height:228px;padding:12px}
   .fighterName{font-size:17px}
+  .fighterVisual{
+    width:92px;
+    min-width:92px;
+  }
+  .fighterImg{
+    max-width:92px;
+    max-height:86px;
+  }
 }
 </style>
 </head>
@@ -775,7 +917,7 @@ body{
   <div class="titleFooter">
     <div class="copy">並びで勝て。</div>
     <button class="btn" onclick="goBuild()">START</button>
-    <div class="version">ver 1.2</div>
+    <div class="version">ver 2.0</div>
   </div>
 </section>
 
@@ -813,7 +955,7 @@ body{
           ・まず5体選ぶ<br>
           ・上下ボタンで順番変更<br>
           ・勝ち抜き戦なので並びが重要<br>
-          ・速さは強いが先手は確定ではない
+          ・上に戦況表、下に拡大対戦表示
         </div>
 
         <div id="enemyPreviewWrap" hidden>
@@ -852,21 +994,29 @@ body{
     </div>
   </div>
 
+  <div class="statusBoard">
+    <div class="statusHead">
+      <div class="label">あなた</div>
+      <div></div>
+      <div class="label right">敵</div>
+    </div>
+    <div id="statusRows" class="statusRows"></div>
+  </div>
+
   <div class="battleTop">
     <div>
       <div class="sideLabel">あなた</div>
       <div id="playerCard" class="fighterCard none">
-        <div class="fighterTop">
-          <div id="playerFighterOrder" class="fighterOrder">-</div>
-        </div>
-
-        <div class="fighterMiddle player">
-          <div class="fighterText">
+        <div class="fighterHeader">
+          <div class="fighterTitleBlock">
+            <div id="playerFighterOrder" class="fighterOrder">-</div>
             <div id="playerFighterName" class="fighterName">-</div>
             <div id="playerFighterRole" class="fighterRole">-</div>
-            <div id="playerMatchup" class="matchupBadge matchup-even">五分</div>
           </div>
+          <div id="playerMatchup" class="matchupBadge matchup-even">五分</div>
+        </div>
 
+        <div class="fighterBody">
           <div class="fighterVisual player">
             <div id="playerBubble" class="battleBubble left" hidden></div>
             <img id="playerFighterImg" class="fighterImg" src="" alt="">
@@ -888,17 +1038,16 @@ body{
     <div>
       <div class="sideLabel" style="text-align:right">敵</div>
       <div id="enemyCard" class="fighterCard none">
-        <div class="fighterTop" style="justify-content:flex-end">
-          <div id="enemyFighterOrder" class="fighterOrder">-</div>
-        </div>
-
-        <div class="fighterMiddle enemy">
-          <div class="fighterText" style="text-align:right">
+        <div class="fighterHeader">
+          <div class="fighterTitleBlock" style="margin-left:auto;text-align:right">
+            <div id="enemyFighterOrder" class="fighterOrder">-</div>
             <div id="enemyFighterName" class="fighterName">-</div>
             <div id="enemyFighterRole" class="fighterRole">-</div>
-            <div id="enemyMatchup" class="matchupBadge matchup-even">五分</div>
           </div>
+          <div id="enemyMatchup" class="matchupBadge matchup-even">五分</div>
+        </div>
 
+        <div class="fighterBody">
           <div class="fighterVisual enemy">
             <div id="enemyBubble" class="battleBubble right" hidden></div>
             <img id="enemyFighterImg" class="fighterImg" src="" alt="">
@@ -1432,6 +1581,15 @@ function showBubble(side, text){
     el.hidden = true;
   }, speedMap[speedMode].bubble);
 }
+function showDamage(side, value, isCrit){
+  const card = document.getElementById(side === "player" ? "playerCard" : "enemyCard");
+  if(!card) return;
+  const div = document.createElement("div");
+  div.className = "damageText" + (isCrit ? " crit" : "");
+  div.textContent = value;
+  card.appendChild(div);
+  setTimeout(() => div.remove(), 700);
+}
 function updateHpBar(fillEl, textEl, fighter){
   if(!fighter){
     fillEl.style.width = "0%";
@@ -1484,6 +1642,46 @@ function renderMiniLists(){
     eEl.appendChild(div);
   });
 }
+function renderStatusBoard(){
+  const rows = document.getElementById("statusRows");
+  rows.innerHTML = "";
+  const labels = ["先鋒","次鋒","中堅","副将","大将"];
+
+  for(let i=0;i<5;i++){
+    const pf = battle.playerTeam[i];
+    const ef = battle.enemyTeam[i];
+    const row = document.createElement("div");
+    row.className = "statusRow";
+
+    const pActive = i === battle.playerActiveIndex;
+    const eActive = i === battle.enemyActiveIndex;
+
+    row.innerHTML = `
+      <div class="miniSideCard ${pf && !pf.alive ? "dead" : ""} ${pActive ? "active" : ""}">
+        <img src="${pf ? pf.img : ""}" alt="" onerror="this.style.opacity='.15'">
+        <div class="miniSideMain">
+          <div class="miniSideName">${labels[i]} ${pf ? pf.name : "-"}</div>
+          <div class="miniSideMeta">${pf ? `${attrLabel(pf.attr)} / HP ${Math.max(0,pf.currentHp)}` : "-"}</div>
+        </div>
+        <div class="miniSideBadge">${pf ? (pf.alive ? (pActive ? "★" : "○") : "×") : ""}</div>
+      </div>
+
+      <div class="boardVs">
+        <div class="boardLink ${pActive && eActive ? "active" : ""}"></div>
+      </div>
+
+      <div class="miniSideCard right ${ef && !ef.alive ? "dead" : ""} ${eActive ? "active" : ""}">
+        <div class="miniSideBadge">${ef ? (ef.alive ? (eActive ? "★" : "○") : "×") : ""}</div>
+        <div class="miniSideMain" style="text-align:right">
+          <div class="miniSideName">${ef ? ef.name : "-"} ${labels[i]}</div>
+          <div class="miniSideMeta">${ef ? `${attrLabel(ef.attr)} / HP ${Math.max(0,ef.currentHp)}` : "-"}</div>
+        </div>
+        <img src="${ef ? ef.img : ""}" alt="" onerror="this.style.opacity='.15'">
+      </div>
+    `;
+    rows.appendChild(row);
+  }
+}
 function renderBattleHeader(){
   const p = getActivePlayer();
   const e = getActiveEnemy();
@@ -1521,7 +1719,9 @@ function renderBattleHeader(){
     eMatch.className = "matchupBadge matchup-even";
   }
 
+  renderStatusBoard();
   renderMiniLists();
+
   document.getElementById("battleTurnText").textContent = `TURN ${battle.turn}`;
   document.getElementById("battleRoundText").textContent = `MATCH ${battle.matchCount}`;
   document.getElementById("playerAliveText").textContent = `あなた 残り${teamAliveCount(battle.playerTeam)}`;
@@ -1562,6 +1762,7 @@ async function attackOnce(attacker, defender){
   playHitEffect(defender.side);
   playHpBarEffect(defender.side);
   showBubble(defender.side, randomLine(hitLines, defender.id, "いて"));
+  showDamage(defender.side, result.damage, result.isCrit);
 
   if(result.isCrit){
     showFlash("クリティカル！");
