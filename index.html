@@ -29,7 +29,7 @@ body{
   width:100%;
   max-width:var(--maxw);
   min-height:100svh;
-  padding:16px;
+  padding:16px 16px 88px;
 }
 .screen{
   min-height:calc(100svh - 32px);
@@ -145,10 +145,10 @@ body{
   margin-top:4px;
 }
 
-/* 属性色 */
-.attr-fire,.attrFire,.dexAttr.attr-fire,.dexDetailAttr.attr-fire{background:rgba(255,110,110,.18)}
-.attr-water,.attrWater,.dexAttr.attr-water,.dexDetailAttr.attr-water{background:rgba(100,170,255,.18)}
-.attr-grass,.attrGrass,.dexAttr.attr-grass,.dexDetailAttr.attr-grass{background:rgba(90,220,130,.18)}
+/* 属性 */
+.attr-fire{background:rgba(255,110,110,.18)}
+.attr-water{background:rgba(100,170,255,.18)}
+.attr-grass{background:rgba(90,220,130,.18)}
 
 /* モード */
 .modeRow{
@@ -173,25 +173,20 @@ body{
   color:#000;
 }
 
-/* 候補キャラカード 改善版 */
+/* 候補キャラカード */
 .pickGrid{
   display:grid;
   grid-template-columns:1fr;
   gap:10px;
 }
-
 .pickCardBig{
   border:1px solid rgba(255,255,255,.18);
   border-radius:18px;
   padding:8px 10px;
   background:#101010;
   position:relative;
-  transition:
-    transform .14s ease,
-    box-shadow .2s ease,
-    border-color .2s ease;
+  transition:transform .14s ease, box-shadow .2s ease, border-color .2s ease;
 }
-
 .pickCardBig.selected{
   border:2px solid #fff;
   box-shadow:
@@ -199,15 +194,9 @@ body{
     0 0 22px rgba(255,255,255,.25);
   animation:selectPop .25s ease;
 }
-
 .pickCardBig.tap{
   transform:scale(.985);
 }
-
-.pickCardBig:hover{
-  transform:scale(1.008);
-}
-
 @keyframes selectPop{
   0%{transform:scale(.96)}
   60%{transform:scale(1.02)}
@@ -221,7 +210,6 @@ body{
   align-items:stretch;
   min-height:154px;
 }
-
 .cardImgWrap{
   width:128px;
   min-height:154px;
@@ -230,7 +218,6 @@ body{
   justify-content:center;
   padding:0;
 }
-
 .cardImg{
   width:100%;
   height:150px;
@@ -239,7 +226,6 @@ body{
   filter:drop-shadow(0 8px 18px rgba(0,0,0,.45));
   display:block;
 }
-
 .cardInfo{
   display:flex;
   flex-direction:column;
@@ -247,21 +233,18 @@ body{
   min-width:0;
   padding-top:2px;
 }
-
 .cardTopLine{
   display:flex;
   justify-content:space-between;
   align-items:flex-start;
   gap:8px;
 }
-
 .cardName{
   font-size:17px;
   font-weight:900;
   line-height:1.1;
   letter-spacing:.01em;
 }
-
 .cardAttr{
   padding:4px 9px;
   border-radius:999px;
@@ -270,28 +253,24 @@ body{
   border:1px solid rgba(255,255,255,.12);
   flex-shrink:0;
 }
-
 .cardRole{
   font-size:12px;
   opacity:.82;
   margin-top:2px;
   line-height:1.25;
 }
-
 .cardStats{
   font-size:12px;
   margin-top:5px;
   color:#ddd;
   line-height:1.25;
 }
-
 .roleRow{
   margin-top:6px;
   display:flex;
   gap:6px;
   flex-wrap:wrap;
 }
-
 .roleTag{
   display:inline-flex;
   align-items:center;
@@ -318,15 +297,19 @@ body{
   line-height:1.38;
   color:#f2f2f2;
 }
-
+.cardEquip{
+  font-size:11px;
+  margin-top:6px;
+  color:#b8d7ff;
+  line-height:1.35;
+}
 .cardButtons{
   margin-top:auto;
   display:flex;
   gap:6px;
   padding-top:8px;
 }
-
-.btnMain,.btnSub,.btnDetail{
+.btnMain,.btnSub,.btnDetail,.btnEquip{
   flex:1;
   border:none;
   border-radius:10px;
@@ -338,6 +321,7 @@ body{
 .btnMain{background:#fff;color:#000}
 .btnSub{background:#333;color:#fff}
 .btnDetail{background:#555;color:#fff}
+.btnEquip{background:#2b2b2b;color:#fff}
 
 /* 並び */
 .teamList{
@@ -388,6 +372,14 @@ body{
   color:var(--muted);
   margin-top:2px;
 }
+.slotEquip{
+  font-size:10px;
+  color:#b8d7ff;
+  margin-top:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 .slotEmpty{color:rgba(255,255,255,.35)}
 .moveBtns{
   display:flex;
@@ -423,34 +415,6 @@ body{
   flex-direction:column;
   gap:10px;
 }
-
-.enemyPreview{
-  margin-top:10px;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-}
-.enemyPreviewCard{
-  background:#191919;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:8px;
-  text-align:center;
-}
-.enemyPreviewCard img{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  border-radius:8px;
-  background:#0d0d0d;
-  border:1px solid var(--line);
-}
-.enemyPreviewCard .n{
-  font-size:11px;
-  margin-top:5px;
-  line-height:1.3;
-}
-
 .buildHint{
   margin-top:10px;
   background:#111;
@@ -461,7 +425,8 @@ body{
   line-height:1.65;
   white-space:pre-line;
 }
-  /* 図鑑 */
+
+/* 図鑑 */
 .dexList{
   display:flex;
   flex-direction:column;
@@ -584,6 +549,79 @@ body{
   color:#eee;
   white-space:pre-line;
 }
+  /* 装備技画面 */
+.skillList{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.skillCard{
+  background:#171717;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+}
+.skillCard.active{
+  outline:2px solid rgba(255,255,255,.55);
+}
+.skillName{
+  font-size:15px;
+  font-weight:900;
+}
+.skillDesc{
+  font-size:12px;
+  line-height:1.55;
+  color:#ddd;
+  margin-top:6px;
+}
+.skillBtns{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+/* お試し専用画面 */
+.testEnemyGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.testEnemyCard{
+  background:#161616;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px;
+  text-align:center;
+}
+.testEnemyCard img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:contain;
+  border-radius:12px;
+  background:#0d0d0d;
+  border:1px solid var(--line);
+}
+.testEnemyName{
+  font-size:14px;
+  font-weight:900;
+  margin-top:8px;
+}
+.testEnemyAttr{
+  font-size:12px;
+  color:#ddd;
+  margin-top:2px;
+}
+.testEnemyBtn{
+  margin-top:10px;
+  width:100%;
+  border:none;
+  border-radius:12px;
+  padding:12px 8px;
+  background:#fff;
+  color:#000;
+  font-size:13px;
+  font-weight:900;
+}
 
 /* 戦況メタ */
 .battleMeta{
@@ -668,7 +706,7 @@ body{
   grid-template-columns:auto 1fr 40px;
 }
 .miniSideCard.dead{
-  opacity:.35;
+  opacity:.25;
   filter:grayscale(1);
 }
 .miniSideCard.active{
@@ -683,12 +721,8 @@ body{
   background:#0d0d0d;
   border:1px solid var(--line);
 }
-.miniSideCard.playerSide img{
-  transform:scaleX(-1);
-}
-.miniSideCard.enemySide img{
-  transform:scaleX(1);
-}
+.miniSideCard.playerSide img{transform:scaleX(-1)}
+.miniSideCard.enemySide img{transform:scaleX(1)}
 .miniSideMain{min-width:0}
 .miniSideName{
   font-size:12px;
@@ -828,6 +862,11 @@ body{
   overflow:hidden;
   text-overflow:ellipsis;
 }
+.fighterEquip{
+  font-size:11px;
+  color:#d7e6ff;
+  line-height:1.35;
+}
 .fighterBody{
   flex:1;
   display:flex;
@@ -851,12 +890,8 @@ body{
   object-fit:contain;
   filter:drop-shadow(0 8px 18px rgba(0,0,0,.45));
 }
-.fighterVisual.player .fighterImg{
-  transform:scaleX(-1);
-}
-.fighterVisual.enemy .fighterImg{
-  transform:scaleX(1);
-}
+.fighterVisual.player .fighterImg{transform:scaleX(-1)}
+.fighterVisual.enemy .fighterImg{transform:scaleX(1)}
 
 .fighterVisual.attackForward{
   animation:attackForwardPlayer .22s ease;
@@ -914,7 +949,6 @@ body{
   align-items:center;
   box-shadow:0 8px 24px rgba(0,0,0,.28);
 }
-
 .battleBubble{
   position:absolute;
   top:-4px;
@@ -955,12 +989,8 @@ body{
   100%{opacity:1;transform:translateY(0) scale(1)}
 }
 
-.fighterCard.hit{
-  animation:cardHitShake .22s ease;
-}
-.fighterCard.hit-enemy{
-  animation:cardHitShakeEnemy .22s ease;
-}
+.fighterCard.hit{animation:cardHitShake .22s ease}
+.fighterCard.hit-enemy{animation:cardHitShakeEnemy .22s ease}
 .fighterCard.flash::after{
   content:"";
   position:absolute;
@@ -1012,9 +1042,7 @@ body{
   z-index:4;
   animation:damagePop .7s ease forwards;
 }
-.damageText.crit{
-  color:#ffd95e;
-}
+.damageText.crit{color:#ffd95e}
 .damageText.adv{
   color:#ff7b7b;
   text-shadow:0 0 10px rgba(255,0,0,.45);
@@ -1115,7 +1143,9 @@ body{
   background:#fff;
   color:#000;
 }
-  .mvpPanel{
+
+/* MVP */
+.mvpPanel{
   background:linear-gradient(180deg,#181818,#101010);
   border:1px solid rgba(255,255,255,.16);
   border-radius:18px;
@@ -1125,9 +1155,7 @@ body{
   overflow:hidden;
   position:relative;
 }
-.mvpPanel.show{
-  animation:mvpAppear .42s ease;
-}
+.mvpPanel.show{animation:mvpAppear .42s ease}
 @keyframes mvpAppear{
   0%{opacity:0; transform:scale(.94) translateY(10px)}
   100%{opacity:1; transform:scale(1) translateY(0)}
@@ -1174,7 +1202,6 @@ body{
   font-size:15px;
   font-weight:900;
 }
-
 .replayPanel{
   background:#111;
   border:1px solid var(--line);
@@ -1184,43 +1211,7 @@ body{
   line-height:1.7;
   white-space:pre-line;
 }
-
-/* プレビュー */
-.previewOverlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  z-index:50;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-}
-.previewModal{
-  width:min(100%,520px);
-  max-height:90svh;
-  overflow:auto;
-  background:linear-gradient(180deg,#171717,#101010);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 16px 40px rgba(0,0,0,.45);
-}
-.previewTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-.previewClose{
-  width:auto;
-  min-width:80px;
-  padding:10px 12px;
-  font-size:14px;
-  border-radius:12px;
-}
-
-@media (max-width:520px){
+  @media (max-width:520px){
   .title{font-size:31px}
   .row{flex-direction:column}
 
@@ -1246,6 +1237,9 @@ body{
     margin-top:6px;
     line-height:1.34;
   }
+  .cardEquip{
+    font-size:10px;
+  }
   .roleRow{
     margin-top:5px;
     gap:5px;
@@ -1258,12 +1252,11 @@ body{
     padding-top:6px;
     gap:6px;
   }
-  .btnMain,.btnSub,.btnDetail{
+  .btnMain,.btnSub,.btnDetail,.btnEquip{
     font-size:12px;
     min-height:40px;
     padding:9px 6px;
   }
-  .pickCardBig:hover{transform:none}
 
   .statusHead{grid-template-columns:1fr 34px 1fr;gap:6px}
   .statusRow{grid-template-columns:1fr 34px 1fr;gap:6px}
@@ -1301,8 +1294,12 @@ body{
     max-width:180px;
     max-height:150px;
   }
-}
 
+  .testEnemyGrid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+}
 </style>
 </head>
 <body>
@@ -1319,7 +1316,7 @@ body{
   <div class="titleFooter">
     <div class="copy">並びだけ決めろ</div>
     <button class="btn" onclick="goBuild()">START</button>
-    <div class="version">ver 8.0</div>
+    <div class="version">ver 9.0</div>
   </div>
 </section>
 
@@ -1363,11 +1360,6 @@ body{
         </div>
 
         <div id="buildHint" class="buildHint">並び特徴をここに表示</div>
-
-        <div id="enemyPreviewWrap" hidden>
-          <div class="sectionTitle">相手を選んで試す</div>
-          <div id="enemyPreview" class="enemyPreview"></div>
-        </div>
       </div>
     </div>
   </div>
@@ -1378,7 +1370,7 @@ body{
     <button class="btn btnGhost backBtn" onclick="goBuild()">編成へ</button>
     <div style="text-align:right">
       <div style="font-size:18px;font-weight:900">キャラ図鑑</div>
-      <div class="teamInfo">特性と数値を確認</div>
+      <div class="teamInfo">特性と装備候補を確認</div>
     </div>
   </div>
 
@@ -1399,6 +1391,95 @@ body{
       </div>
     </div>
   </div>
+</section>
+
+<section id="screenEquip" class="screen" hidden>
+  <div class="topBar">
+    <button class="btn btnGhost backBtn" onclick="goBuild()">編成へ</button>
+    <div style="text-align:right">
+      <div id="equipTitle" style="font-size:18px;font-weight:900">装備技変更</div>
+      <div class="teamInfo">3つの中から1つ選ぶ</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div id="equipCharInfo" class="buildHint">-</div>
+    <div id="skillList" class="skillList"></div>
+  </div>
+</section>
+
+<section id="screenTestSelect" class="screen" hidden>
+  <div class="topBar">
+    <button class="btn btnGhost backBtn" onclick="goBuild()">編成へ</button>
+    <div style="text-align:right">
+      <div id="testSelectTitle" style="font-size:18px;font-weight:900">相手を選んで試す</div>
+      <div class="teamInfo">相性確認用</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div id="testSelectHint" class="buildHint">-</div>
+    <div id="testEnemyGrid" class="testEnemyGrid"></div>
+  </div>
+</section>
+
+<section id="screenTestBattle" class="screen" hidden>
+  <div class="topBar">
+    <button class="btn btnGhost backBtn" onclick="backToTestSelect()">相手選択へ</button>
+    <div style="text-align:right">
+      <div id="testBattleTitle" style="font-size:18px;font-weight:900">お試しバトル</div>
+      <div class="teamInfo">1対1の確認</div>
+    </div>
+  </div>
+
+  <div class="battleTop">
+    <div>
+      <div class="sideLabel">あなた</div>
+      <div id="testPlayerCard" class="fighterCard none">
+        <div class="fighterHeader">
+          <div id="testPlayerBadges" class="fighterBadges"></div>
+          <div id="testPlayerName" class="fighterName">-</div>
+          <div id="testPlayerRole" class="fighterRole">-</div>
+          <div id="testPlayerEquip" class="fighterEquip">-</div>
+        </div>
+        <div class="fighterBody">
+          <div class="fighterVisual player">
+            <img id="testPlayerImg" class="fighterImg" src="" alt="">
+          </div>
+        </div>
+        <div class="hpWrap">
+          <div class="hpRow"><span>HP</span><span id="testPlayerHp">-</span></div>
+          <div class="hpBar"><div id="testPlayerHpFill" class="hpFill high"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vs">VS</div>
+
+    <div>
+      <div class="sideLabel" style="text-align:right">敵</div>
+      <div id="testEnemyCard" class="fighterCard none">
+        <div class="fighterHeader">
+          <div id="testEnemyBadges" class="fighterBadges right"></div>
+          <div id="testEnemyName" class="fighterName" style="text-align:right">-</div>
+          <div id="testEnemyRole" class="fighterRole" style="text-align:right">-</div>
+          <div id="testEnemyEquip" class="fighterEquip" style="text-align:right">-</div>
+        </div>
+        <div class="fighterBody">
+          <div class="fighterVisual enemy">
+            <img id="testEnemyImg" class="fighterImg" src="" alt="">
+          </div>
+        </div>
+        <div class="hpWrap">
+          <div class="hpRow"><span>HP</span><span id="testEnemyHp">-</span></div>
+          <div class="hpBar"><div id="testEnemyHpFill" class="hpFill high"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="testSummary" class="buildHint">簡易評価</div>
+  <div id="testLog" class="buildHint">戦闘ログ</div>
 </section>
 
 <section id="screenBattle" class="screen" hidden>
@@ -1450,6 +1531,7 @@ body{
           <div id="playerBadges" class="fighterBadges"></div>
           <div id="playerFighterName" class="fighterName">-</div>
           <div id="playerFighterRole" class="fighterRole">-</div>
+          <div id="playerFighterEquip" class="fighterEquip">-</div>
         </div>
 
         <div class="fighterBody">
@@ -1478,6 +1560,7 @@ body{
           <div id="enemyBadges" class="fighterBadges right"></div>
           <div id="enemyFighterName" class="fighterName" style="text-align:right">-</div>
           <div id="enemyFighterRole" class="fighterRole" style="text-align:right">-</div>
+          <div id="enemyFighterEquip" class="fighterEquip" style="text-align:right">-</div>
         </div>
 
         <div class="fighterBody">
@@ -1526,81 +1609,154 @@ body{
   </div>
 </section>
 
-<div id="previewOverlay" class="previewOverlay" hidden>
-  <div class="previewModal">
-    <div class="previewTop">
-      <div style="font-size:20px;font-weight:900">お試しバトル</div>
-      <button class="btn btnGhost previewClose" onclick="closePreviewBattle()">閉じる</button>
-    </div>
-    <div class="teamInfo" id="previewTitle">1対1の確認</div>
-
-    <div class="battleTop" style="margin-top:12px;margin-bottom:0">
-      <div>
-        <div class="sideLabel">あなた</div>
-        <div id="previewPlayerCard" class="fighterCard none">
-          <div class="fighterHeader">
-            <div id="previewPlayerBadges" class="fighterBadges"></div>
-            <div id="previewPlayerName" class="fighterName">-</div>
-            <div id="previewPlayerRole" class="fighterRole">-</div>
-          </div>
-          <div class="fighterBody">
-            <div class="fighterVisual player">
-              <img id="previewPlayerImg" class="fighterImg" src="" alt="">
-            </div>
-          </div>
-          <div class="hpWrap">
-            <div class="hpRow"><span>HP</span><span id="previewPlayerHp">-</span></div>
-            <div class="hpBar"><div id="previewPlayerHpFill" class="hpFill high"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vs">VS</div>
-
-      <div>
-        <div class="sideLabel" style="text-align:right">敵</div>
-        <div id="previewEnemyCard" class="fighterCard none">
-          <div class="fighterHeader">
-            <div id="previewEnemyBadges" class="fighterBadges right"></div>
-            <div id="previewEnemyName" class="fighterName" style="text-align:right">-</div>
-            <div id="previewEnemyRole" class="fighterRole" style="text-align:right">-</div>
-          </div>
-          <div class="fighterBody">
-            <div class="fighterVisual enemy">
-              <img id="previewEnemyImg" class="fighterImg" src="" alt="">
-            </div>
-          </div>
-          <div class="hpWrap">
-            <div class="hpRow"><span>HP</span><span id="previewEnemyHp">-</span></div>
-            <div class="hpBar"><div id="previewEnemyHpFill" class="hpFill high"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="previewSummary" class="buildHint">簡易評価</div>
-    <div id="previewLog" class="buildHint">ここに戦闘ログ</div>
-  </div>
-</div>
-
-</div>
-
 <script>
 const characters = [
-  { id:"dekabusa", name:"デカブサ", attr:"water", role:"安定", roleType:"balance", hp:130, atk:25, def:22, spd:8, img:"./dekabusa.png", skill:"安定して粘る。背水時ダメージ +50%", desc:"耐久寄りの安定型。削られてから少し強くなる。", mvpLine:"まあ、こんな日もある。" },
-  { id:"kabao", name:"カバオ", attr:"water", role:"耐久・回復", roleType:"tank", hp:145, atk:26, def:28, spd:10, img:"./kabao.png", skill:"ターン終了時にHPを8回復", desc:"圧倒的な耐久力で粘る。勝ち抜き向き。", mvpLine:"まだ立ってるぞ。" },
-  { id:"nise", name:"ニセブサ", attr:"water", role:"バランス", roleType:"balance", hp:120, atk:28, def:20, spd:12, img:"./nise.png", skill:"被ダメージ -20%", desc:"派手さはないが崩れにくい万能型。", mvpLine:"似てるだけじゃない。" },
-  { id:"juzo", name:"ジュウゾウ", attr:"water", role:"反撃型", roleType:"tank", hp:110, atk:30, def:18, spd:14, img:"./juzo.png", skill:"被弾後、次の攻撃ダメージ +50%", desc:"一発受けてから返すタイプ。", mvpLine:"読めてた。" },
+  {
+    id:"dekabusa", name:"デカブサ", attr:"water", role:"安定", roleType:"balance",
+    hp:130, atk:25, def:22, spd:8, img:"./dekabusa.png",
+    passive:"背水：HP50%以下で与ダメージ+50%",
+    desc:"耐久寄りの安定型。削られてから少し強くなる。",
+    mvpLine:"まあ、こんな日もある。",
+    skills:[
+      { id:"db_hp", name:"しぶとい", desc:"最大HP+10", effect:{ hp:10 } },
+      { id:"db_atk", name:"重い一撃", desc:"攻撃+4", effect:{ atk:4 } },
+      { id:"db_guard", name:"ねばる", desc:"初回被ダメージ-20%", effect:{ firstReduce:0.2 } }
+    ]
+  },
+  {
+    id:"kabao", name:"カバオ", attr:"water", role:"耐久・回復", roleType:"tank",
+    hp:145, atk:26, def:28, spd:10, img:"./kabao.png",
+    passive:"回復：ターン終了時にHP8回復",
+    desc:"圧倒的な耐久力で粘る。勝ち抜き向き。",
+    mvpLine:"まだ立ってるぞ。",
+    skills:[
+      { id:"kb_def", name:"鉄壁", desc:"防御+4", effect:{ def:4 } },
+      { id:"kb_heal", name:"大食い", desc:"回復量+4", effect:{ healBonus:4 } },
+      { id:"kb_slow", name:"鈍重反撃", desc:"後手で攻撃した時、与ダメージ+20%", effect:{ secondAttackBonus:0.2 } }
+    ]
+  },
+  {
+    id:"nise", name:"ニセブサ", attr:"water", role:"バランス", roleType:"balance",
+    hp:120, atk:28, def:20, spd:12, img:"./nise.png",
+    passive:"被ダメージ-20%",
+    desc:"派手さはないが崩れにくい万能型。",
+    mvpLine:"似てるだけじゃない。",
+    skills:[
+      { id:"ns_bal", name:"万能型", desc:"攻撃+3 / 防御+3", effect:{ atk:3, def:3 } },
+      { id:"ns_fire", name:"水慣れ", desc:"火属性からの被ダメージをさらに-10%", effect:{ reduceFromFire:0.1 } },
+      { id:"ns_last", name:"粘着", desc:"HP50%以下で防御+5", effect:{ lowHpDef:5 } }
+    ]
+  },
+  {
+    id:"juzo", name:"ジュウゾウ", attr:"water", role:"反撃型", roleType:"tank",
+    hp:110, atk:30, def:18, spd:14, img:"./juzo.png",
+    passive:"反撃態勢：被弾後、次の攻撃ダメージ+50%",
+    desc:"一発受けてから返すタイプ。",
+    mvpLine:"読めてた。",
+    skills:[
+      { id:"jz_guard", name:"迎撃", desc:"初回被ダメージ-15%", effect:{ firstReduce:0.15 } },
+      { id:"jz_counter", name:"怒りの角", desc:"反撃発動時、さらに与ダメージ+10%", effect:{ counterBonus:0.1 } },
+      { id:"jz_spd", name:"冷静", desc:"速度+3", effect:{ spd:3 } }
+    ]
+  },
 
-  { id:"ratel", name:"ラテロウ", attr:"fire", role:"先手特化", roleType:"speed", hp:95, atk:34, def:14, spd:20, img:"./rate.png", skill:"先手時ダメージ +30%", desc:"速さで押す先鋒向き。固定戦でも強い。", mvpLine:"速かっただろ。" },
-  { id:"kanemon", name:"カンえもん", attr:"fire", role:"初撃特化", roleType:"speed", hp:100, atk:36, def:15, spd:16, img:"./kan.png", skill:"初撃ダメージ +40%", desc:"最初の一撃に全てをかける。", mvpLine:"初手で決めた。" },
-  { id:"namaken", name:"ナマケン", attr:"fire", role:"奇襲", roleType:"attack", hp:105, atk:32, def:16, spd:18, img:"./namaken.png", skill:"相手が満HPならダメージ +50%", desc:"初対面に強い奇襲型。", mvpLine:"やる時はやる。" },
-  { id:"panpan", name:"パンパン", attr:"fire", role:"ロマン", roleType:"trick", hp:100, atk:38, def:12, spd:14, img:"./panpan.png", skill:"15%で空振り。35%でダメージ +70%", desc:"不安定だが当たれば重い。少し安定化済み。", mvpLine:"暴れ足りないな。" },
+  {
+    id:"ratel", name:"ラテロウ", attr:"fire", role:"先手特化", roleType:"speed",
+    hp:95, atk:34, def:14, spd:20, img:"./rate.png",
+    passive:"先手必勝：先手時ダメージ+30%",
+    desc:"速さで押す先鋒向き。固定戦でも強い。",
+    mvpLine:"速かっただろ。",
+    skills:[
+      { id:"rt_spd", name:"神速", desc:"速度+3", effect:{ spd:3 } },
+      { id:"rt_risk", name:"紙装甲覚悟", desc:"攻撃+5 / 防御-3", effect:{ atk:5, def:-3 } },
+      { id:"rt_chase", name:"追撃", desc:"相手HP50%以下なら与ダメージ+15%", effect:{ chaseBonus:0.15 } }
+    ]
+  },
+  {
+    id:"kanemon", name:"カンえもん", attr:"fire", role:"初撃特化", roleType:"speed",
+    hp:100, atk:36, def:15, spd:16, img:"./kan.png",
+    passive:"初撃全力：最初の1回の攻撃ダメージ+40%",
+    desc:"最初の一撃に全てをかける。",
+    mvpLine:"初手で決めた。",
+    skills:[
+      { id:"kn_last", name:"火事場", desc:"HP50%以下で攻撃+5", effect:{ lowHpAtk:5 } },
+      { id:"kn_grass", name:"対草狩り", desc:"草属性への与ダメージ+10%", effect:{ bonusVsGrass:0.1 } },
+      { id:"kn_power", name:"一点突破", desc:"攻撃+6 / 速度-2", effect:{ atk:6, spd:-2 } }
+    ]
+  },
+  {
+    id:"namaken", name:"ナマケン", attr:"fire", role:"奇襲", roleType:"attack",
+    hp:105, atk:32, def:16, spd:18, img:"./namaken.png",
+    passive:"奇襲：相手が満HPなら与ダメージ+50%",
+    desc:"初対面に強い奇襲型。",
+    mvpLine:"やる時はやる。",
+    skills:[
+      { id:"nm_second", name:"後出し名人", desc:"相手より遅い時、与ダメージ+15%", effect:{ slowAttackBonus:0.15 } },
+      { id:"nm_pen", name:"すり抜け", desc:"防御の影響を少し軽減", effect:{ armorPen:0.15 } },
+      { id:"nm_mix", name:"眠そうで速い", desc:"速度+2 / 攻撃+2", effect:{ spd:2, atk:2 } }
+    ]
+  },
+  {
+    id:"panpan", name:"パンパン", attr:"fire", role:"ロマン", roleType:"trick",
+    hp:100, atk:38, def:12, spd:14, img:"./panpan.png",
+    passive:"ロマン：15%で空振り、35%で与ダメージ+70%",
+    desc:"不安定だが当たれば重い。少し安定化済み。",
+    mvpLine:"暴れ足りないな。",
+    skills:[
+      { id:"pp_high", name:"一か八か", desc:"暴走率+10%", effect:{ ragePlus:0.1 } },
+      { id:"pp_safe", name:"慎重", desc:"空振り率-5%", effect:{ missMinus:0.05 } },
+      { id:"pp_crit", name:"見栄っぱり", desc:"クリティカル率+8%", effect:{ critPlus:0.08 } }
+    ]
+  },
 
-  { id:"ani", name:"デカブサ兄", attr:"grass", role:"連勝型", roleType:"finisher", hp:115, atk:33, def:18, spd:15, img:"./ani.png", skill:"ターン経過で与ダメージ上昇", desc:"長引くほど強くなる後半型。", mvpLine:"当然だな。" },
-  { id:"tora", name:"トラさん", attr:"grass", role:"分身", roleType:"trick", hp:105, atk:31, def:17, spd:17, img:"./tora.png", skill:"20%で攻撃を回避", desc:"回避で流れを変えるトリッキー型。", mvpLine:"分身しただけだ。" },
-  { id:"gori", name:"ゴリさん", attr:"grass", role:"防御", roleType:"tank", hp:120, atk:27, def:24, spd:9, img:"./gori.png", skill:"初回被ダメージ半減 / 与ダメージ +10%", desc:"守りに優れる。少し火力も強化済み。", mvpLine:"ふんばった。" },
-  { id:"king", name:"キング", attr:"grass", role:"フィニッシャー", roleType:"finisher", hp:110, atk:36, def:16, spd:13, img:"./king.png", skill:"相手HP30%以下ならダメージ +40%", desc:"仕留め性能を上げたフィニッシャー。強化済み。", mvpLine:"仕留めた。" }
+  {
+    id:"ani", name:"デカブサ兄", attr:"grass", role:"連勝型", roleType:"finisher",
+    hp:115, atk:33, def:18, spd:15, img:"./ani.png",
+    passive:"加速装置：ターン経過ごとに与ダメージ上昇",
+    desc:"長引くほど強くなる後半型。",
+    mvpLine:"当然だな。",
+    skills:[
+      { id:"an_guard", name:"余裕", desc:"初回被ダメージ-15%", effect:{ firstReduce:0.15 } },
+      { id:"an_late", name:"後半本気", desc:"3ターン目以降、さらに与ダメージ+10%", effect:{ lateTurnBonus:0.1 } },
+      { id:"an_fire", name:"ヘビースモーク", desc:"火属性からの被ダメージ-10%", effect:{ reduceFromFire:0.1 } }
+    ]
+  },
+  {
+    id:"tora", name:"トラさん", attr:"grass", role:"分身", roleType:"trick",
+    hp:105, atk:31, def:17, spd:17, img:"./tora.png",
+    passive:"分身：20%で攻撃回避",
+    desc:"回避で流れを変えるトリッキー型。",
+    mvpLine:"分身しただけだ。",
+    skills:[
+      { id:"tr_first", name:"見切り", desc:"初回回避率+10%", effect:{ firstEvadePlus:0.1 } },
+      { id:"tr_follow", name:"じゃれつき", desc:"回避成功後、次の攻撃ダメージ+20%", effect:{ evadeAttackBonus:0.2 } },
+      { id:"tr_spd", name:"俊敏", desc:"速度+3", effect:{ spd:3 } }
+    ]
+  },
+  {
+    id:"gori", name:"ゴリさん", attr:"grass", role:"防御", roleType:"tank",
+    hp:120, atk:27, def:24, spd:9, img:"./gori.png",
+    passive:"初回ガード：最初の被ダメージ半減 / 与ダメージ+10%",
+    desc:"守りに優れる。少し火力も強化済み。",
+    mvpLine:"ふんばった。",
+    skills:[
+      { id:"gr_def", name:"厚い毛皮", desc:"防御+5", effect:{ def:5 } },
+      { id:"gr_low", name:"反骨", desc:"HP50%以下で攻撃+6", effect:{ lowHpAtk:6 } },
+      { id:"gr_keep", name:"受け流し", desc:"2回目以降の被ダメージ-10%", effect:{ repeatReduce:0.1 } }
+    ]
+  },
+  {
+    id:"king", name:"キング", attr:"grass", role:"フィニッシャー", roleType:"finisher",
+    hp:110, atk:36, def:16, spd:13, img:"./king.png",
+    passive:"処刑人：相手HP30%以下なら与ダメージ+40%",
+    desc:"締め性能を上げた後半型。",
+    mvpLine:"仕留めた。",
+    skills:[
+      { id:"kg_mid", name:"王の圧", desc:"相手HP50%以下なら与ダメージ+10%", effect:{ midHpBonus:0.1 } },
+      { id:"kg_water", name:"草の意地", desc:"水属性への与ダメージ+10%", effect:{ bonusVsWater:0.1 } },
+      { id:"kg_mix", name:"追い詰める", desc:"速度+2 / 攻撃+3", effect:{ spd:2, atk:3 } }
+    ]
+  }
 ];
 
 const attackLines = {
@@ -1644,10 +1800,11 @@ const koLines = {
 let team = [];
 let battle = null;
 let speedMode = "normal";
-let previewState = null;
-let previewSelectedPlayerId = null;
 let battleMode = "survival";
 let dexSelectedId = null;
+let equipTargetId = null;
+let testPlayerId = null;
+let testEnemyId = null;
 let battleRunning = false;
 
 const speedMap = {
@@ -1655,6 +1812,11 @@ const speedMap = {
   fast:   { talk:220, afterHit:160, endTurn:120, intro:260, start:140, ko:320, enter:220, bubble:500 },
   turbo:  { talk:70,  afterHit:40,  endTurn:30,  intro:40,  start:20,  ko:90,  enter:60,  bubble:220 }
 };
+
+const equippedSkills = {};
+characters.forEach(c => {
+  equippedSkills[c.id] = c.skills[0].id;
+});
 
 function attrLabel(attr){
   if(attr === "fire") return "火";
@@ -1688,10 +1850,11 @@ function orderLabel(i){
 function getChar(id){
   return characters.find(c => c.id === id);
 }
-function randomLine(map, id, fallback){
-  const arr = map[id];
-  if(!arr || !arr.length) return fallback;
-  return arr[Math.floor(Math.random() * arr.length)];
+function getEquippedSkill(charId){
+  const ch = getChar(charId);
+  if(!ch) return null;
+  const sid = equippedSkills[charId];
+  return ch.skills.find(s => s.id === sid) || ch.skills[0];
 }
 function roleTagHtml(ch){
   return `
@@ -1699,7 +1862,6 @@ function roleTagHtml(ch){
     <span class="roleTag">属性:${attrLabel(ch.attr)}</span>
   `;
 }
-
 function getAttrRate(attackerAttr, defenderAttr){
   if(attackerAttr==="water" && defenderAttr==="fire") return 1.2;
   if(attackerAttr==="fire" && defenderAttr==="grass") return 1.2;
@@ -1711,14 +1873,12 @@ function getAttrRate(attackerAttr, defenderAttr){
 
   return 1;
 }
-
 function matchupText(a, b){
   const r = getAttrRate(a.attr, b.attr);
   if(r > 1) return { text:"有利", cls:"badge-good" };
   if(r < 1) return { text:"不利", cls:"badge-bad" };
   return { text:"五分", cls:"badge-even" };
 }
-
 function getVictoryLine(name){
   const map = {
     "デカブサ":"まあ勝った。",
@@ -1753,62 +1913,56 @@ function getLoseLine(name){
   };
   return map[name] || "負けた。";
 }
-
-function cloneFighter(char, side, orderIndex){
-  return {
-    ...JSON.parse(JSON.stringify(char)),
-    side,
-    orderIndex,
-    maxHp: char.hp,
-    currentHp: char.hp,
-    alive: true,
-    wins: 0,
-    damageDealt: 0,
-    damageTaken: 0,
-    turns: 0,
-    mvpScore: 0,
-    matchWin: 0,
-    flags: {
-      firstAttackDone: false,
-      firstHitTaken: false,
-      aniBoost: 0,
-      counterReady: false,
-      isFirstThisTurn: false
-    }
-  };
-}
-
-function showScreen(id){
-  document.getElementById("screenTitle").hidden = true;
-  document.getElementById("screenBuild").hidden = true;
-  document.getElementById("screenBattle").hidden = true;
-  const dex = document.getElementById("screenDex");
-  if(dex) dex.hidden = true;
-  document.getElementById(id).hidden = false;
-}
-function goTitle(){ showScreen("screenTitle"); }
-function goBuild(){
-  showScreen("screenBuild");
-  renderAll();
-}
-function goDex(){
-  showScreen("screenDex");
-  renderDexList();
-  if(!dexSelectedId && characters.length){
-    dexSelectedId = characters[0].id;
-  }
-  renderDexDetail(dexSelectedId);
-}
-function backToBuildFromBattle(){
-  battle = null;
-  battleRunning = false;
-  showScreen("screenBuild");
-  renderAll();
+function randomLine(map, id, fallback){
+  const arr = map[id];
+  if(!arr || !arr.length) return fallback;
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 function wait(ms){
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
+function showOnlyScreen(id){
+  ["screenTitle","screenBuild","screenDex","screenEquip","screenTestSelect","screenTestBattle","screenBattle"].forEach(s=>{
+    const el = document.getElementById(s);
+    if(el) el.hidden = true;
+  });
+  document.getElementById(id).hidden = false;
+}
+function goTitle(){ showOnlyScreen("screenTitle"); }
+function goBuild(){
+  showOnlyScreen("screenBuild");
+  renderAll();
+}
+function goDex(){
+  showOnlyScreen("screenDex");
+  renderDexList();
+  if(!dexSelectedId && characters.length) dexSelectedId = characters[0].id;
+  renderDexDetail(dexSelectedId);
+}
+function goEquip(id){
+  equipTargetId = id;
+  showOnlyScreen("screenEquip");
+  renderEquipScreen();
+}
+function goTestSelect(id){
+  testPlayerId = id;
+  showOnlyScreen("screenTestSelect");
+  renderTestSelectScreen();
+}
+function goTestBattle(enemyId){
+  testEnemyId = enemyId;
+  showOnlyScreen("screenTestBattle");
+  renderTestBattleScreen();
+}
+function backToTestSelect(){
+  showOnlyScreen("screenTestSelect");
+  renderTestSelectScreen();
+}
+function backToBuildFromBattle(){
+  battle = null;
+  battleRunning = false;
+  goBuild();
+}
 function setBattleMode(mode){
   battleMode = mode;
   document.getElementById("modeSurvivalBtn").classList.toggle("active", mode === "survival");
@@ -1820,12 +1974,10 @@ function setBattleMode(mode){
   const hint = document.getElementById("buildHint");
   if(hint) hint.textContent = buildTeamHint();
 }
-
 function playTapEffect(el){
   el.classList.add("tap");
   setTimeout(()=>el.classList.remove("tap"), 120);
 }
-
 function addToTeam(id){
   if(team.includes(id)) return;
   if(team.length >= 5){
@@ -1851,15 +2003,12 @@ function moveDown(index){
 }
 function clearTeam(){
   team = [];
-  document.getElementById("enemyPreviewWrap").hidden = true;
   renderAll();
 }
 function autoFillTeam(){
   team = ["ratel","namaken","kabao","nise","ani"];
-  document.getElementById("enemyPreviewWrap").hidden = true;
   renderAll();
 }
-
 function buildTeamHint(){
   if(team.length === 0) return "並び特徴\nまだ未選択";
   const arr = team.map(getChar);
@@ -1867,33 +2016,24 @@ function buildTeamHint(){
   const avgDef = arr.reduce((s,v)=>s+v.def,0)/arr.length;
   const first = arr[0];
   const last = arr[arr.length-1];
-
   const lines = [];
   lines.push("並び特徴");
   lines.push(`モード：${battleMode === "survival" ? "勝ち抜き" : "対面固定"}`);
-
   if(avgSpd >= 15) lines.push("全体：先手寄り");
   else if(avgDef >= 21) lines.push("全体：耐久寄り");
   else lines.push("全体：バランス");
-
   if(first) lines.push(`先鋒向き：${first.name}（${first.role}）`);
   if(last && arr.length >= 3) lines.push(`後半の鍵：${last.name}（${last.role}）`);
-
-  if(battleMode === "fixed"){
-    lines.push("固定戦では相性をぶつける並びが重要");
-  }else{
-    lines.push("勝ち抜きでは連戦向きの配置が重要");
-  }
-
+  lines.push(battleMode === "fixed" ? "固定戦では相性をぶつける並びが重要" : "勝ち抜きでは連戦向きの配置が重要");
   return lines.join("\n");
 }
-
 function renderPickGrid(){
   const el = document.getElementById("pickGrid");
   el.innerHTML = "";
 
   characters.forEach(ch => {
     const selected = team.includes(ch.id);
+    const skill = getEquippedSkill(ch.id);
 
     const card = document.createElement("div");
     card.className = "pickCardBig" + (selected ? " selected" : "");
@@ -1902,11 +2042,7 @@ function renderPickGrid(){
     card.innerHTML = `
       <div class="cardMain">
         <div class="cardImgWrap">
-          <img
-            src="${ch.img}"
-            class="cardImg"
-            alt="${ch.name}"
-            onerror="this.style.opacity='.15'">
+          <img src="${ch.img}" class="cardImg" alt="${ch.name}" onerror="this.style.opacity='.15'">
         </div>
 
         <div class="cardInfo">
@@ -1923,27 +2059,26 @@ function renderPickGrid(){
               ${roleTagHtml(ch)}
             </div>
 
-            <div class="cardSkill">${ch.skill}</div>
+            <div class="cardSkill">${ch.passive}</div>
+            <div class="cardEquip">装備技：${skill.name}</div>
           </div>
 
           <div class="cardButtons">
-            ${
-              selected
-                ? `<button class="btnSub" onclick="event.stopPropagation(); removeFromTeam('${ch.id}')">外す</button>`
-                : `<button class="btnMain" onclick="event.stopPropagation(); addToTeam('${ch.id}')">選ぶ</button>`
+            ${selected
+              ? `<button class="btnSub" onclick="event.stopPropagation(); removeFromTeam('${ch.id}')">外す</button>`
+              : `<button class="btnMain" onclick="event.stopPropagation(); addToTeam('${ch.id}')">選ぶ</button>`
             }
-            <button class="btnDetail" onclick="event.stopPropagation(); openPreviewSelector('${ch.id}')">試す</button>
+            <button class="btnEquip" onclick="event.stopPropagation(); goEquip('${ch.id}')">技</button>
+            <button class="btnDetail" onclick="event.stopPropagation(); goTestSelect('${ch.id}')">試す</button>
           </div>
         </div>
       </div>
     `;
-
     el.appendChild(card);
   });
 
   document.getElementById("buildHint").textContent = buildTeamHint();
 }
-
 function renderTeamList(){
   const el = document.getElementById("teamList");
   el.innerHTML = "";
@@ -1956,12 +2091,14 @@ function renderTeamList(){
 
     if(id){
       const ch = getChar(id);
+      const sk = getEquippedSkill(id);
       slot.innerHTML = `
         <div class="slotNum">${labels[i]}</div>
         <img class="slotThumb" src="${ch.img}" alt="${ch.name}" onerror="this.style.opacity='.15'">
         <div class="slotMain">
           <div class="slotName">${ch.name}</div>
           <div class="slotMeta">${attrLabel(ch.attr)} / ${ch.role}</div>
+          <div class="slotEquip">装備技：${sk.name}</div>
           <button class="removeBtn" onclick="removeFromTeam('${ch.id}')">外す</button>
         </div>
         <div class="moveBtns">
@@ -1980,13 +2117,11 @@ function renderTeamList(){
         <div></div>
       `;
     }
-
     el.appendChild(slot);
   }
 
   document.getElementById("confirmBtn").disabled = team.length !== 5;
 }
-
 function renderAll(){
   renderPickGrid();
   renderTeamList();
@@ -2017,16 +2152,19 @@ function renderAll(){
     el.appendChild(row);
   });
 }
-
 function renderDexDetail(id){
   const el = document.getElementById("dexDetail");
   if(!el) return;
   const ch = getChar(id);
-
   if(!ch){
     el.innerHTML = `<div class="dexEmpty">キャラを選んでください</div>`;
     return;
   }
+
+  const skillList = ch.skills.map(s=>{
+    const mark = equippedSkills[ch.id] === s.id ? "（装備中）" : "";
+    return `・${s.name}${mark}\n${s.desc}`;
+  }).join("\n\n");
 
   el.innerHTML = `
     <div class="dexHero">
@@ -2038,27 +2176,20 @@ function renderDexDetail(id){
     <div class="dexRole">${ch.role} / ${roleTypeLabel(ch.roleType)}</div>
 
     <div class="dexStatsGrid">
-      <div class="dexStat">
-        <div class="dexStatLabel">HP</div>
-        <div class="dexStatValue">${ch.hp}</div>
-      </div>
-      <div class="dexStat">
-        <div class="dexStatLabel">攻撃</div>
-        <div class="dexStatValue">${ch.atk}</div>
-      </div>
-      <div class="dexStat">
-        <div class="dexStatLabel">防御</div>
-        <div class="dexStatValue">${ch.def}</div>
-      </div>
-      <div class="dexStat">
-        <div class="dexStatLabel">速度</div>
-        <div class="dexStatValue">${ch.spd}</div>
-      </div>
+      <div class="dexStat"><div class="dexStatLabel">HP</div><div class="dexStatValue">${ch.hp}</div></div>
+      <div class="dexStat"><div class="dexStatLabel">攻撃</div><div class="dexStatValue">${ch.atk}</div></div>
+      <div class="dexStat"><div class="dexStatLabel">防御</div><div class="dexStatValue">${ch.def}</div></div>
+      <div class="dexStat"><div class="dexStatLabel">速度</div><div class="dexStatValue">${ch.spd}</div></div>
     </div>
 
     <div class="dexBlock">
-      <div class="dexBlockTitle">特性</div>
-      <div class="dexText">${ch.skill}</div>
+      <div class="dexBlockTitle">固定特性</div>
+      <div class="dexText">${ch.passive}</div>
+    </div>
+
+    <div class="dexBlock">
+      <div class="dexBlockTitle">装備技候補</div>
+      <div class="dexText">${skillList}</div>
     </div>
 
     <div class="dexBlock">
@@ -2072,7 +2203,103 @@ function renderDexDetail(id){
     </div>
   `;
 }
+function renderEquipScreen(){
+  const ch = getChar(equipTargetId);
+  if(!ch) return;
 
+  document.getElementById("equipTitle").textContent = `${ch.name} の装備技`;
+  document.getElementById("equipCharInfo").textContent =
+    `固定特性\n${ch.passive}\n\n現在装備：${getEquippedSkill(ch.id).name}`;
+
+  const list = document.getElementById("skillList");
+  list.innerHTML = "";
+
+  ch.skills.forEach(skill => {
+    const active = equippedSkills[ch.id] === skill.id;
+    const div = document.createElement("div");
+    div.className = "skillCard" + (active ? " active" : "");
+    div.innerHTML = `
+      <div class="skillName">${skill.name}</div>
+      <div class="skillDesc">${skill.desc}</div>
+      <div class="skillBtns">
+        ${active
+          ? `<button class="btnMain">装備中</button>`
+          : `<button class="btn" onclick="equipSkill('${ch.id}','${skill.id}')">これを装備</button>`}
+      </div>
+    `;
+    list.appendChild(div);
+  });
+}
+function equipSkill(charId, skillId){
+  equippedSkills[charId] = skillId;
+  renderEquipScreen();
+}
+function renderTestSelectScreen(){
+  const player = getChar(testPlayerId);
+  if(!player) return;
+
+  document.getElementById("testSelectTitle").textContent = `${player.name} の対戦相手を選んでください`;
+  document.getElementById("testSelectHint").textContent =
+    `お試しキャラ：${player.name}\n装備技：${getEquippedSkill(player.id).name}`;
+
+  const grid = document.getElementById("testEnemyGrid");
+  grid.innerHTML = "";
+
+  characters
+    .filter(c => c.id !== player.id)
+    .forEach(c => {
+      const div = document.createElement("div");
+      div.className = "testEnemyCard";
+      div.innerHTML = `
+        <img src="${c.img}" alt="${c.name}" onerror="this.style.opacity='.15'">
+        <div class="testEnemyName">${c.name}</div>
+        <div class="testEnemyAttr">${attrLabel(c.attr)}</div>
+        <button class="testEnemyBtn" onclick="goTestBattle('${c.id}')">この相手で試す</button>
+      `;
+      grid.appendChild(div);
+    });
+}
+function applySkillToClone(fighter){
+  const skill = getEquippedSkill(fighter.id);
+  if(!skill) return fighter;
+
+  fighter.equippedSkill = skill;
+  const ef = skill.effect || {};
+
+  if(ef.hp) fighter.hp += ef.hp;
+  if(ef.atk) fighter.atk += ef.atk;
+  if(ef.def) fighter.def += ef.def;
+  if(ef.spd) fighter.spd += ef.spd;
+
+  fighter.maxHp = fighter.hp;
+  fighter.currentHp = fighter.hp;
+  return fighter;
+}
+function cloneFighter(char, side, orderIndex){
+  const base = {
+    ...JSON.parse(JSON.stringify(char)),
+    side,
+    orderIndex,
+    maxHp: char.hp,
+    currentHp: char.hp,
+    alive: true,
+    wins: 0,
+    damageDealt: 0,
+    damageTaken: 0,
+    turns: 0,
+    matchWin: 0,
+    flags: {
+      firstAttackDone: false,
+      firstHitTaken: false,
+      aniBoost: 0,
+      counterReady: false,
+      isFirstThisTurn: false,
+      firstEvadeUsed: false,
+      evadeBuff: false
+    }
+  };
+  return applySkillToClone(base);
+}
 function shuffle(arr){
   const a = [...arr];
   for(let i=a.length-1;i>0;i--){
@@ -2081,7 +2308,6 @@ function shuffle(arr){
   }
   return a;
 }
-
 function scoreForAI(char){
   let score = 0;
   score += char.hp * 0.7;
@@ -2096,50 +2322,12 @@ function scoreForAI(char){
   if(char.id === "king") score += 12;
   return score;
 }
-
 function makeEnemyTeam(){
   const pool = characters.map(c => c.id).filter(id => !team.includes(id));
   let enemyChars = shuffle(pool).slice(0,5).map(id => getChar(id));
   enemyChars.sort((a,b) => scoreForAI(b) - scoreForAI(a));
-
-  const front = [];
-  const middle = [];
-  const back = [];
-  for(const c of enemyChars){
-    if(["ratel","kanemon","tora"].includes(c.id)) front.push(c);
-    else if(["kabao","gori","nise","juzo"].includes(c.id)) middle.push(c);
-    else back.push(c);
-  }
-  enemyChars = [...front, ...middle, ...back].slice(0,5);
   return enemyChars.map(c => c.id);
 }
-
-function openPreviewSelector(id){
-  previewSelectedPlayerId = id;
-  const player = getChar(id);
-
-  const wrap = document.getElementById("enemyPreviewWrap");
-  const el = document.getElementById("enemyPreview");
-  el.innerHTML = "";
-
-  characters
-    .filter(c => c.id !== id)
-    .forEach(c => {
-      const div = document.createElement("div");
-      div.className = "enemyPreviewCard";
-      div.innerHTML = `
-        <img src="${c.img}" alt="${c.name}" onerror="this.style.opacity='.15'">
-        <div class="n">${c.name}<br>${attrLabel(c.attr)}</div>
-        <button class="btnMain" style="width:100%;margin-top:6px;padding:8px 6px;font-size:12px"
-          onclick="openPreviewBattleWithEnemy('${id}','${c.id}')">この相手で試す</button>
-      `;
-      el.appendChild(div);
-    });
-
-  wrap.hidden = false;
-  document.getElementById("buildHint").textContent = `${player.name} の対戦相手を選んでください`;
-}
-
 function effectiveSpeed(f){
   const fatigueRate = 1 - Math.min(f.wins * 0.05, 0.15);
   return Math.max(1, Math.round(f.spd * fatigueRate));
@@ -2157,11 +2345,19 @@ function decideFirst(a, b){
   else if(diff <= -3) aRate = 0.42;
   return Math.random() < aRate ? a : b;
 }
-
 function calcDamage(attacker, defender){
   if(!attacker.alive || !defender.alive) return {damage:0, text:"", isCrit:false, attrRate:1};
 
-  if(defender.id === "tora" && Math.random() < 0.20){
+  let evadeRate = 0;
+  if(defender.id === "tora") evadeRate += 0.20;
+  if(defender.equippedSkill?.effect?.firstEvadePlus && !defender.flags.firstEvadeUsed){
+    evadeRate += defender.equippedSkill.effect.firstEvadePlus;
+  }
+  if(Math.random() < evadeRate){
+    defender.flags.firstEvadeUsed = true;
+    if(defender.equippedSkill?.effect?.evadeAttackBonus){
+      defender.flags.evadeBuff = true;
+    }
     return { damage:0, text:`${defender.name}は分身した。`, isCrit:false, attrRate:1 };
   }
 
@@ -2177,11 +2373,15 @@ function calcDamage(attacker, defender){
     extraTexts.push(`${attacker.name}の初撃全力。`);
   }
   if(attacker.id === "panpan"){
-    const r = Math.random();
-    if(r < 0.15){
+    let missRate = 0.15;
+    if(attacker.equippedSkill?.effect?.missMinus) missRate -= attacker.equippedSkill.effect.missMinus;
+    if(Math.random() < missRate){
       attacker.flags.firstAttackDone = true;
       return { damage:0, text:`${attacker.name}は空振りした。`, isCrit:false, attrRate:1 };
-    }else if(r < 0.50){
+    }
+    let rageRate = 0.35;
+    if(attacker.equippedSkill?.effect?.ragePlus) rageRate += attacker.equippedSkill.effect.ragePlus;
+    if(Math.random() < rageRate){
       skillRate *= 1.7;
       extraTexts.push(`${attacker.name}が暴走した。`);
     }
@@ -2211,6 +2411,35 @@ function calcDamage(attacker, defender){
     skillRate *= 1.1;
   }
 
+  if(attacker.equippedSkill?.effect?.lowHpAtk && attacker.currentHp <= attacker.maxHp * 0.5){
+    skillRate *= 1 + (attacker.equippedSkill.effect.lowHpAtk / Math.max(1, attacker.atk));
+  }
+  if(attacker.equippedSkill?.effect?.bonusVsGrass && defender.attr === "grass"){
+    skillRate *= 1 + attacker.equippedSkill.effect.bonusVsGrass;
+  }
+  if(attacker.equippedSkill?.effect?.bonusVsWater && defender.attr === "water"){
+    skillRate *= 1 + attacker.equippedSkill.effect.bonusVsWater;
+  }
+  if(attacker.equippedSkill?.effect?.chaseBonus && defender.currentHp <= defender.maxHp * 0.5){
+    skillRate *= 1 + attacker.equippedSkill.effect.chaseBonus;
+  }
+  if(attacker.equippedSkill?.effect?.midHpBonus && defender.currentHp <= defender.maxHp * 0.5){
+    skillRate *= 1 + attacker.equippedSkill.effect.midHpBonus;
+  }
+  if(attacker.equippedSkill?.effect?.slowAttackBonus && effectiveSpeed(attacker) < effectiveSpeed(defender)){
+    skillRate *= 1 + attacker.equippedSkill.effect.slowAttackBonus;
+  }
+  if(attacker.equippedSkill?.effect?.secondAttackBonus && !attacker.flags.isFirstThisTurn){
+    skillRate *= 1 + attacker.equippedSkill.effect.secondAttackBonus;
+  }
+  if(attacker.equippedSkill?.effect?.lateTurnBonus && attacker.turns >= 2){
+    skillRate *= 1 + attacker.equippedSkill.effect.lateTurnBonus;
+  }
+  if(attacker.flags.evadeBuff){
+    skillRate *= 1.2;
+    attacker.flags.evadeBuff = false;
+  }
+
   let defendRate = 1.0;
   if(defender.id === "gori" && !defender.flags.firstHitTaken){
     defendRate *= 0.5;
@@ -2219,12 +2448,32 @@ function calcDamage(attacker, defender){
   if(defender.id === "nise"){
     defendRate *= 0.8;
   }
+  if(defender.equippedSkill?.effect?.firstReduce && !defender.flags.firstHitTaken){
+    defendRate *= 1 - defender.equippedSkill.effect.firstReduce;
+  }
+  if(defender.equippedSkill?.effect?.reduceFromFire && attacker.attr === "fire"){
+    defendRate *= 1 - defender.equippedSkill.effect.reduceFromFire;
+  }
+  if(defender.equippedSkill?.effect?.repeatReduce && defender.flags.firstHitTaken){
+    defendRate *= 1 - defender.equippedSkill.effect.repeatReduce;
+  }
+  if(defender.equippedSkill?.effect?.lowHpDef && defender.currentHp <= defender.maxHp * 0.5){
+    const add = defender.equippedSkill.effect.lowHpDef;
+    defender._tempDefBonus = add;
+  }else{
+    defender._tempDefBonus = 0;
+  }
 
   const fatigueAtk = 1 - Math.min(attacker.wins * 0.04, 0.12);
-  const base = Math.max(8, (attacker.atk * fatigueAtk) - defender.def * 0.5);
+  const armorPen = attacker.equippedSkill?.effect?.armorPen || 0;
+  const effDef = Math.max(0, defender.def + (defender._tempDefBonus || 0));
+  const base = Math.max(8, (attacker.atk * fatigueAtk) - effDef * (0.5 - armorPen));
   const attr = getAttrRate(attacker.attr, defender.attr);
   const rand = 0.92 + Math.random() * 0.16;
-  const crit = Math.random() < 0.08 ? 1.5 : 1.0;
+
+  let critRate = 0.08;
+  if(attacker.equippedSkill?.effect?.critPlus) critRate += attacker.equippedSkill.effect.critPlus;
+  const crit = Math.random() < critRate ? 1.5 : 1.0;
 
   let damage = Math.round(base * attr * skillRate * defendRate * rand * crit);
   damage = Math.max(8, damage);
@@ -2235,23 +2484,21 @@ function calcDamage(attacker, defender){
 
   return { damage, text: extraTexts.join(" "), isCrit: crit > 1, attrRate: attr };
 }
-
 function healEndTurn(f){
   if(!f.alive) return null;
-  if(f.id === "kabao"){
+  let heal = 0;
+  if(f.id === "kabao") heal += 8;
+  if(f.equippedSkill?.effect?.healBonus) heal += f.equippedSkill.effect.healBonus;
+  if(heal > 0){
     const before = f.currentHp;
-    f.currentHp = Math.min(f.maxHp, f.currentHp + 8);
+    f.currentHp = Math.min(f.maxHp, f.currentHp + heal);
     if(f.currentHp > before) return `${f.name}は回復した。`;
   }
   return null;
 }
-
-function getActivePlayer(){ return battle.playerTeam[battle.playerActiveIndex]; }
-function getActiveEnemy(){ return battle.enemyTeam[battle.enemyActiveIndex]; }
-function teamAliveCount(teamArr){
+  function teamAliveCount(teamArr){
   return teamArr.filter(f => f.alive).length;
 }
-
 function addLog(text){
   if(!battle) return;
   battle.logs.push(text);
@@ -2267,7 +2514,6 @@ function addLog(text){
     panel.scrollTop = panel.scrollHeight;
   }
 }
-
 function playAttackMotion(side){
   const visual = document.querySelector(
     side === "player"
@@ -2280,7 +2526,6 @@ function playAttackMotion(side){
   visual.classList.add("attackForward");
   setTimeout(()=>visual.classList.remove("attackForward"), 240);
 }
-
 function playHitEffect(side){
   const card = document.getElementById(side === "player" ? "playerCard" : "enemyCard");
   if(!card) return;
@@ -2290,7 +2535,6 @@ function playHitEffect(side){
   card.classList.add("flash");
   setTimeout(() => card.classList.remove("hit", "hit-enemy", "flash"), 260);
 }
-
 function playHpBarEffect(side){
   const bar = document.getElementById(side === "player" ? "playerHpFill" : "enemyHpFill");
   if(!bar) return;
@@ -2300,14 +2544,12 @@ function playHpBarEffect(side){
   wrap.classList.add("hitbar");
   setTimeout(() => wrap.classList.remove("hitbar"), 220);
 }
-
 function playKoFade(side){
   const card = document.getElementById(side === "player" ? "playerCard" : "enemyCard");
   if(!card) return;
   card.classList.add("koFaded");
   setTimeout(() => card.classList.remove("koFaded"), 700);
 }
-
 function showBubble(side, text){
   const el = document.getElementById(side === "player" ? "playerBubble" : "enemyBubble");
   if(!el) return;
@@ -2316,7 +2558,6 @@ function showBubble(side, text){
   clearTimeout(el._timer);
   el._timer = setTimeout(() => { el.hidden = true; }, speedMap[speedMode].bubble);
 }
-
 function showDamage(side, value, isCrit, attrRate){
   const card = document.getElementById(side === "player" ? "playerCard" : "enemyCard");
   if(!card) return;
@@ -2328,7 +2569,6 @@ function showDamage(side, value, isCrit, attrRate){
   card.appendChild(div);
   setTimeout(() => div.remove(), 700);
 }
-
 function updateHpBar(fillEl, textEl, fighter){
   if(!fighter){
     fillEl.style.width = "0%";
@@ -2340,7 +2580,6 @@ function updateHpBar(fillEl, textEl, fighter){
   fillEl.className = "hpFill " + (pct <= 30 ? "low" : pct <= 60 ? "mid" : "high");
   textEl.textContent = `${Math.max(0, fighter.currentHp)} / ${fighter.maxHp}`;
 }
-
 function setImg(el, fighter){
   if(!fighter){
     el.src = "";
@@ -2350,9 +2589,10 @@ function setImg(el, fighter){
   el.onerror = function(){ this.style.opacity='.15'; };
   el.style.opacity = "1";
 }
-
 function renderBadges(targetEl, fighter, matchup){
-  if(!targetEl) return;
+  if(!targetEl){
+    return;
+  }
   if(!fighter){
     targetEl.innerHTML = "";
     return;
@@ -2364,7 +2604,7 @@ function renderBadges(targetEl, fighter, matchup){
     <span class="infoBadge ${matchup.cls}">${matchup.text}</span>
   `;
 }
-  function renderStatusBoard(){
+function renderStatusBoard(){
   const rows = document.getElementById("statusRows");
   if(!rows || !battle) return;
   rows.innerHTML = "";
@@ -2408,7 +2648,6 @@ function renderBadges(targetEl, fighter, matchup){
 
   drawStatusLines();
 }
-
 function drawStatusLines(){
   const svg = document.getElementById("statusLines");
   const wrapEl = document.querySelector(".statusBoardWrap");
@@ -2442,6 +2681,8 @@ function drawStatusLines(){
     svg.appendChild(line);
   });
 }
+function getActivePlayer(){ return battle.playerTeam[battle.playerActiveIndex]; }
+function getActiveEnemy(){ return battle.enemyTeam[battle.enemyActiveIndex]; }
 
 function renderBattleHeader(){
   const p = getActivePlayer();
@@ -2451,8 +2692,11 @@ function renderBattleHeader(){
 
   document.getElementById("playerFighterName").textContent = p ? p.name : "全滅";
   document.getElementById("playerFighterRole").textContent = p ? p.role : "-";
+  document.getElementById("playerFighterEquip").textContent = p?.equippedSkill ? `装備技：${p.equippedSkill.name}` : "-";
+
   document.getElementById("enemyFighterName").textContent = e ? e.name : "全滅";
   document.getElementById("enemyFighterRole").textContent = e ? e.role : "-";
+  document.getElementById("enemyFighterEquip").textContent = e?.equippedSkill ? `装備技：${e.equippedSkill.name}` : "-";
 
   setImg(document.getElementById("playerFighterImg"), p);
   setImg(document.getElementById("enemyFighterImg"), e);
@@ -2478,7 +2722,6 @@ function renderBattleHeader(){
   document.getElementById("playerAliveText").textContent = `あなた 残り${teamAliveCount(battle.playerTeam)}`;
   document.getElementById("enemyAliveText").textContent = `敵 残り${teamAliveCount(battle.enemyTeam)}`;
 }
-
 function showFlash(text){
   const el = document.getElementById("flashMsg");
   if(!el) return;
@@ -2504,7 +2747,6 @@ function getKoWait(){
   if(speedMode === "fast") return 260;
   return 420;
 }
-
 async function attackOnce(attacker, defender){
   playAttackMotion(attacker.side);
 
@@ -2556,7 +2798,6 @@ async function attackOnce(attacker, defender){
     await wait(speedMap[speedMode].ko);
   }
 }
-
 async function processTurn(){
   const p = getActivePlayer();
   const e = getActiveEnemy();
@@ -2604,8 +2845,7 @@ async function processTurn(){
   renderBattleHeader();
   await wait(speedMap[speedMode].endTurn);
 }
-
-function calcMvpScore(f){
+  function calcMvpScore(f){
   const hpRate = f.maxHp > 0 ? (Math.max(0,f.currentHp) / f.maxHp) : 0;
   return (
     f.wins * 100 +
@@ -2637,19 +2877,16 @@ function calcWorst(teamArr){
   }
   return worst;
 }
-  function renderMvpPanel(mvp){
+function renderMvpPanel(mvp){
   const panel = document.getElementById("mvpPanel");
   const img = document.getElementById("mvpImg");
   const name = document.getElementById("mvpName");
   const stats = document.getElementById("mvpStats");
   const line = document.getElementById("mvpLine");
 
-  if(!panel || !img || !name || !stats || !line) return;
-
   img.src = mvp.img;
   img.alt = mvp.name;
   img.onerror = function(){ this.style.opacity='.15'; };
-
   name.textContent = mvp.name;
   stats.textContent =
     `勝利本数 ${mvp.matchWin} / 撃破 ${mvp.wins}\n与ダメ ${mvp.damageDealt} / 残HP ${Math.max(0,mvp.currentHp)}`;
@@ -2660,7 +2897,6 @@ function calcWorst(teamArr){
   void panel.offsetWidth;
   panel.classList.add("show");
 }
-
 function buildSummary(){
   const playerAlive = teamAliveCount(battle.playerTeam);
   const enemyAlive = teamAliveCount(battle.enemyTeam);
@@ -2710,21 +2946,18 @@ function buildSummary(){
     text: lines.join("\n")
   };
 }
-
 function buildReplayText(){
   if(!battle.lineHistory.length) return "特に見どころはなかった。";
   return battle.lineHistory.map((v,i)=>
     `${i+1}. ${orderLabel(v.playerIdx)} ${battle.playerTeam[v.playerIdx].name} vs ${orderLabel(v.enemyIdx)} ${battle.enemyTeam[v.enemyIdx].name}`
   ).join("\n");
 }
-
 function aliveNext(teamArr, startIndex){
   for(let i=startIndex;i<teamArr.length;i++){
     if(teamArr[i].alive) return i;
   }
   return -1;
 }
-
 async function battleLoopSurvival(){
   addLog("対戦開始。");
   renderBattleHeader();
@@ -2778,7 +3011,6 @@ async function battleLoopSurvival(){
 
   finishBattle();
 }
-
 async function battleLoopFixed(){
   addLog("対面固定バトル開始。");
   renderBattleHeader();
@@ -2829,7 +3061,6 @@ async function battleLoopFixed(){
 
   finishBattle();
 }
-
 async function finishBattle(){
   battleRunning = false;
   const summary = buildSummary();
@@ -2838,9 +3069,7 @@ async function finishBattle(){
   document.getElementById("summaryCard").textContent = summary.text;
   document.getElementById("replayPanel").textContent = buildReplayText();
   document.getElementById("battleActions").hidden = false;
-  await wait(120);
 }
-
 async function startBattle(){
   if(team.length !== 5){
     alert("5体必要");
@@ -2862,7 +3091,7 @@ async function startBattle(){
 
   battleRunning = true;
 
-  showScreen("screenBattle");
+  showOnlyScreen("screenBattle");
   document.getElementById("logPanel").innerHTML = "";
   document.getElementById("liveTicker").textContent = "対戦開始。";
   document.getElementById("battleActions").hidden = true;
@@ -2883,12 +3112,10 @@ async function startBattle(){
     await battleLoopSurvival();
   }
 }
-
 function rematch(){
   if(team.length !== 5) return;
   startBattle();
 }
-
 function setBattleSpeed(mode, el){
   speedMode = mode;
   document.getElementById("battleSpeedText").textContent =
@@ -2896,57 +3123,40 @@ function setBattleSpeed(mode, el){
   document.querySelectorAll(".speedBtn").forEach(b => b.classList.remove("active"));
   if(el) el.classList.add("active");
 }
+function renderTestBattleScreen(){
+  const p = cloneFighter(getChar(testPlayerId), "player", 0);
+  const e = cloneFighter(getChar(testEnemyId), "enemy", 0);
 
-function openPreviewBattleWithEnemy(playerId, enemyId){
-  const ch = getChar(playerId);
-  const enemy = getChar(enemyId);
+  document.getElementById("testBattleTitle").textContent = `${p.name} vs ${e.name}`;
 
-  previewState = {
-    player: cloneFighter(ch, "player", 0),
-    enemy: cloneFighter(enemy, "enemy", 0),
-    logs:[]
-  };
+  document.getElementById("testPlayerCard").className = "fighterCard " + attrCardClass(p.attr);
+  document.getElementById("testEnemyCard").className = "fighterCard " + attrCardClass(e.attr);
 
-  document.getElementById("previewOverlay").hidden = false;
-  document.getElementById("previewTitle").textContent = `${ch.name} vs ${enemy.name}`;
-  renderPreviewBattle();
-}
+  const pAttrClass = p.attr === "fire" ? "badge-attr-fire" : p.attr === "water" ? "badge-attr-water" : "badge-attr-grass";
+  const eAttrClass = e.attr === "fire" ? "badge-attr-fire" : e.attr === "water" ? "badge-attr-water" : "badge-attr-grass";
+  const mp = matchupText(p,e);
+  const me = matchupText(e,p);
 
-function closePreviewBattle(){
-  previewState = null;
-  document.getElementById("previewOverlay").hidden = true;
-}
-
-function renderPreviewBadges(target, fighter, foe){
-  const m = matchupText(fighter, foe);
-  const attrBadgeClass = fighter.attr === "fire" ? "badge-attr-fire" : fighter.attr === "water" ? "badge-attr-water" : "badge-attr-grass";
-  target.innerHTML = `
+  document.getElementById("testPlayerBadges").innerHTML = `
     <span class="infoBadge">試し</span>
-    <span class="infoBadge ${attrBadgeClass}">${attrLabel(fighter.attr)}</span>
-    <span class="infoBadge ${m.cls}">${m.text}</span>
+    <span class="infoBadge ${pAttrClass}">${attrLabel(p.attr)}</span>
+    <span class="infoBadge ${mp.cls}">${mp.text}</span>
   `;
-}
+  document.getElementById("testEnemyBadges").innerHTML = `
+    <span class="infoBadge">試し</span>
+    <span class="infoBadge ${eAttrClass}">${attrLabel(e.attr)}</span>
+    <span class="infoBadge ${me.cls}">${me.text}</span>
+  `;
 
-function renderPreviewBattle(){
-  const p = previewState.player;
-  const e = previewState.enemy;
+  document.getElementById("testPlayerName").textContent = p.name;
+  document.getElementById("testPlayerRole").textContent = p.role;
+  document.getElementById("testPlayerEquip").textContent = `装備技：${p.equippedSkill.name}`;
+  document.getElementById("testEnemyName").textContent = e.name;
+  document.getElementById("testEnemyRole").textContent = e.role;
+  document.getElementById("testEnemyEquip").textContent = `装備技：${e.equippedSkill.name}`;
 
-  document.getElementById("previewPlayerCard").className = "fighterCard " + attrCardClass(p.attr);
-  document.getElementById("previewEnemyCard").className = "fighterCard " + attrCardClass(e.attr);
-
-  renderPreviewBadges(document.getElementById("previewPlayerBadges"), p, e);
-  renderPreviewBadges(document.getElementById("previewEnemyBadges"), e, p);
-
-  document.getElementById("previewPlayerName").textContent = p.name;
-  document.getElementById("previewPlayerRole").textContent = p.role;
-  document.getElementById("previewEnemyName").textContent = e.name;
-  document.getElementById("previewEnemyRole").textContent = e.role;
-
-  setImg(document.getElementById("previewPlayerImg"), p);
-  setImg(document.getElementById("previewEnemyImg"), e);
-
-  updateHpBar(document.getElementById("previewPlayerHpFill"), document.getElementById("previewPlayerHp"), p);
-  updateHpBar(document.getElementById("previewEnemyHpFill"), document.getElementById("previewEnemyHp"), e);
+  setImg(document.getElementById("testPlayerImg"), p);
+  setImg(document.getElementById("testEnemyImg"), e);
 
   const logs = [];
   let turn = 0;
@@ -2987,15 +3197,15 @@ function renderPreviewBattle(){
     }
   }
 
-  updateHpBar(document.getElementById("previewPlayerHpFill"), document.getElementById("previewPlayerHp"), p);
-  updateHpBar(document.getElementById("previewEnemyHpFill"), document.getElementById("previewEnemyHp"), e);
+  updateHpBar(document.getElementById("testPlayerHpFill"), document.getElementById("testPlayerHp"), p);
+  updateHpBar(document.getElementById("testEnemyHpFill"), document.getElementById("testEnemyHp"), e);
 
   let result = "互角";
   let summaryTone = "";
 
   if(p.alive && !e.alive){
     result = `${p.name} が有利`;
-    summaryTone = "先手や火力が噛み合えば押し切れる";
+    summaryTone = "相性か特性で押し切りやすい";
   }else if(!p.alive && e.alive){
     result = `${e.name} が有利`;
     summaryTone = "相性か特性で押されやすい";
@@ -3004,11 +3214,11 @@ function renderPreviewBattle(){
     summaryTone = "大きな差はない";
   }
 
-  document.getElementById("previewSummary").textContent =
+  document.getElementById("testSummary").textContent =
     `簡易評価\n${result}\n${summaryTone}`;
 
-  document.getElementById("previewLog").textContent =
-    `戦闘ログ\n` + logs.slice(0,6).join("\n");
+  document.getElementById("testLog").textContent =
+    `戦闘ログ\n${logs.slice(0,8).join("\n")}`;
 }
 
 window.addEventListener("resize",()=>{
